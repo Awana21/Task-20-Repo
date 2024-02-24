@@ -16,6 +16,46 @@ import openpyxl
 
 # Function to load data from Excel file
 def load_data():
+    path = r"C:\Users\44784\Desktop\Slider\CoGrammar\Task 20\Python Data Entry\people.xlsx"
+    workbook = openpyxl.load_workbook(path)
+    sheet = workbook.active
+# Existing code for loading data into the treeview
+    list_values = list(sheet.values)
+    print(list_values)
+    for col_name in list_values[0]:
+        treeview.heading(col_name, text=col_name)
+
+    for value_tuple in list_values[1:]:
+        treeview.insert('', tk.END, values=value_tuple)
+
+# Function to insert a new row of data
+def insert_row():
+    name = name_entry.get()
+    age = int(age_spinbox.get())
+    subscription_status = status_combobox.get()
+    employment_status = "Employed" if a.get() else "Unemployed"
+
+    print(name, age, subscription_status, employment_status)
+
+# Your existing code for inserting row into Excel sheet
+    path = r"C:\Users\44784\Desktop\Slider\CoGrammar\Task 20\Python Data Entry\people.xlsx"
+    workbook = openpyxl.load_workbook(path)
+    sheet = workbook.active
+    row_values = [name, age, subscription_status, employment_status]
+    sheet.append(row_values)
+    workbook.save(path)
+
+# Your existing code for inserting row into treeview
+    treeview.insert('', tk.END, values=row_values)
+
+# Your existing code for clearing values
+    name_entry.delete(0, "end")
+    name_entry.insert(0, "Name")
+    age_spinbox.delete(0, "end")
+    age_spinbox.insert(0, "Age")
+    status_combobox.set(combo_list[0])
+    checkbutton.state(["!selected"])
+=======
     try:
         path = r"C:\Users\44784\Desktop\Slider\CoGrammar\Task 20\Python Data Entry\people.xlsx"
         workbook = openpyxl.load_workbook(path)
@@ -60,6 +100,7 @@ def insert_row():
 
     except Exception as e:
         messagebox.showerror("Error", f"Error inserting row: {str(e)}")
+
 
 # Function to toggle between light and dark themes
 def toggle_mode():
