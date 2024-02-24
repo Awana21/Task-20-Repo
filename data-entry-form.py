@@ -13,12 +13,12 @@ import tkinter as tk
 from tkinter import ttk
 import openpyxl
 
-#Connect excel file
+# Function to load data from Excel file
 def load_data():
     path = r"C:\Users\44784\Desktop\Slider\CoGrammar\Task 20\Python Data Entry\people.xlsx"
     workbook = openpyxl.load_workbook(path)
     sheet = workbook.active
-
+# Existing code for loading data into the treeview
     list_values = list(sheet.values)
     print(list_values)
     for col_name in list_values[0]:
@@ -27,7 +27,7 @@ def load_data():
     for value_tuple in list_values[1:]:
         treeview.insert('', tk.END, values=value_tuple)
 
-#Collect data
+# Function to insert a new row of data
 def insert_row():
     name = name_entry.get()
     age = int(age_spinbox.get())
